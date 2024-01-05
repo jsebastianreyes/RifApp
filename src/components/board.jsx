@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import Square from './square'
+import { useState } from 'react'
 
 
 const BoardStyled = styled.main`
@@ -14,10 +15,16 @@ const BoardStyled = styled.main`
 
 function Board() {
     const numbers = Array(100).fill()
+    const [selectedNumbers, setSelectedNumbers] = useState([])
+    console.log(selectedNumbers)
     return (
         <BoardStyled>
             {numbers.map((el, i) => {
-                return <Square key={`square-${i}`} number={i}/>
+                return <Square 
+                key={`square-${i}`}
+                number={i}
+                setSelectedNumbers={setSelectedNumbers}
+                />
             })}
         </BoardStyled>
     )
