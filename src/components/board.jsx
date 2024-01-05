@@ -3,6 +3,12 @@ import Square from './square'
 
 
 const BoardStyled = styled.main`
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(3rem, 1fr));
+    gap: 1rem;
+
+    margin-block: 3rem;
+    margin-inline: 2rem;
 
 `
 
