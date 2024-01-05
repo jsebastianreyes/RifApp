@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 
 const FooterStyled = styled.footer`
-
+    text-align: center;
 `
 
 function Footer() {
     return (
         <FooterStyled>
-            Footer
+            Developed by Sebastián Reyes 🫡
         </FooterStyled>
     )
 }
