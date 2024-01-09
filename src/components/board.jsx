@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 import Square from './square'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import {  onSnapshot, collection } from "firebase/firestore"; 
+import { db } from '../firebase/config';
+
+
 
 
 const BoardStyled = styled.main`
@@ -14,9 +18,25 @@ const BoardStyled = styled.main`
 `
 
 function Board() {
+    const [numbersSold, setNumbersSold] = useState([])
+
+    useEffect(()=>{
+        onSnapshot(collection(db, 'board'),
+        (querySnapshot)=> {
+          let listUsers = []
+          querySnapshot.forEach((doc) => {
+            listUsers.push(doc.data().numeros) 
+          })  
+           
+           return setNumbersSold(listUsers)
+        })  
+    },[])
+
+    
+
     const numbers = Array(100).fill()
     const [selectedNumbers, setSelectedNumbers] = useState([])
-    console.log(selectedNumbers)
+    const uuid = useRef(self.crypto.randomUUID())
     return (
         <BoardStyled>
             {numbers.map((el, i) => {
@@ -24,6 +44,9 @@ function Board() {
                 key={`square-${i}`}
                 number={i}
                 setSelectedNumbers={setSelectedNumbers}
+                selectedNumbers={selectedNumbers}
+                uuid={uuid.current}
+                numbersSold={numbersSold.flat()}
                 />
             })}
         </BoardStyled>
