@@ -81,7 +81,7 @@ function Square({number, setSelectedNumbers, selectedNumbers, uuid, numbersSold}
    }
    return (
         <SquareStyled onClick={handleActive} className={clasName()}
-        onDoubleClick={handleDoubleClick} title={isAvailable() ? 'Vendido' : null}>
+        onDoubleClick={handleDoubleClick} title={isAvailable() & !active ? 'Vendido' : null}>
             {number}
         </SquareStyled>
     )
