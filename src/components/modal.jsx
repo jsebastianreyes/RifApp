@@ -12,9 +12,9 @@ const ModalStyled = styled.div`
     inset-block-start: 50%;
     transform: translateY(-50%) translateX(-50%);
     inset-inline-start: 50%;
-    max-inline-size: 34rem;
+    max-inline-size: 25rem;
     inline-size: 100%;
-    min-block-size: 23rem;
+    min-block-size: 16rem;
     box-shadow: 1px 1px 5px #000;
     border: 1px solid #4d4d4d;
     font: var(--baseFont);
