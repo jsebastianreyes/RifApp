@@ -43,7 +43,7 @@ const SquareStyled = styled.div`
 `
 
 function Square({number, setSelectedNumbers, selectedNumbers, uuid, numbersSold}) {
-   console.log(numbersSold)
+  //  console.log(numbersSold)
     const [active, setActive] = useState(false)
 
     const handleActive = (e) => {
@@ -81,7 +81,7 @@ function Square({number, setSelectedNumbers, selectedNumbers, uuid, numbersSold}
    }
    return (
         <SquareStyled onClick={handleActive} className={clasName()}
-        onDoubleClick={handleDoubleClick} title={isAvailable() ? 'Vendido' : null}>
+        onDoubleClick={handleDoubleClick} title={isAvailable() & !active ? 'Vendido' : null}>
             {number}
         </SquareStyled>
     )
