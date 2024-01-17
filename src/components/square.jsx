@@ -43,7 +43,7 @@ const SquareStyled = styled.div`
 `
 
 function Square({number, setSelectedNumbers, selectedNumbers, uuid, numbersSold}) {
-   console.log(numbersSold)
+  //  console.log(numbersSold)
     const [active, setActive] = useState(false)
 
     const handleActive = (e) => {
