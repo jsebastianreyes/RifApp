@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const OverlayStyled = styled.div`
-   backdrop-filter: blur(10px);
+   backdrop-filter: blur(9px);
    position: fixed;
    inset: 0;
    
