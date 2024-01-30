@@ -3,6 +3,8 @@ import Square from './square'
 import { useState, useRef, useEffect } from 'react'
 import {  onSnapshot, collection } from "firebase/firestore"; 
 import { db } from '../firebase/config';
+import Button from './button';
+
 
 
 
@@ -38,7 +40,8 @@ function Board() {
     const [selectedNumbers, setSelectedNumbers] = useState([])
     const uuid = useRef(self.crypto.randomUUID())
     return (
-        <BoardStyled>
+        <>
+         <BoardStyled>
             {numbers.map((el, i) => {
                 return <Square 
                 key={`square-${i}`}
@@ -49,7 +52,12 @@ function Board() {
                 numbersSold={numbersSold.flat()}
                 />
             })}
+
         </BoardStyled>
+            {selectedNumbers.length > 0 ? <Button text="pagar"/> : null}
+
+        </>
+       
     )
 }
 
