@@ -8,11 +8,12 @@ function App() {
 
   const [modalConfig, setModalConfig] = useState({visibility: false, template: 'default'})
 
-  const handleActivemodal = ()=> {
-    setModalConfig(prev => {
-      return {visibility: true}
-    })
-  }
+  // const handleActivemodal = ()=> {
+  //   setModalConfig(prev => {
+  //     return {visibility: true}
+
+  //   })
+  // }
 
   return (
     <>  
@@ -21,7 +22,9 @@ function App() {
       <Footer/>  
       <Modal modalConfig={modalConfig} setModalConfig={setModalConfig}/>
 
-      <button onClick={ handleActivemodal }>Activar modal</button>
+    
+      
+      
     </>
   )
 }
