@@ -5,13 +5,13 @@ const FormularioPagoStyled = styled.div`
     form{
         display: flex;
         flex-direction: column;
-        gap: .8rem;
+        gap: .5rem;
         margin-block: 1rem;
     }
 
     form input{
         font: var(--baseFont);
-        border-radius: 2rem;
+        border-radius: .5rem;
         border: 1px solid #ccc;
         padding:.4rem 1rem;
     }
