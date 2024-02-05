@@ -19,8 +19,17 @@ const BoardStyled = styled.main`
 
 `
 
-function Board() {
+function Board({modalConfig, setModalConfig}) {
+
+
     const [numbersSold, setNumbersSold] = useState([])
+
+const handleActivemodal = ()=> {
+    setModalConfig(prev => {
+      return {visibility: true, template: 'form'}
+
+    })
+  }
 
     useEffect(()=>{
         onSnapshot(collection(db, 'board'),
@@ -54,7 +63,7 @@ function Board() {
             })}
 
         </BoardStyled>
-            {selectedNumbers.length > 0 ? <Button text="pagar"/> : null}
+            {selectedNumbers.length > 0 ? <Button text="pagar" onClick={handleActivemodal}/> : null}
 
         </>
        

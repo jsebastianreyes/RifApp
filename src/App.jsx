@@ -17,8 +17,9 @@ function App() {
 
   return (
     <>  
+
       <Header/>
-      <Board/>
+      <Board modalConfig={modalConfig} setModalConfig={setModalConfig}/>
       <Footer/>  
       <Modal modalConfig={modalConfig} setModalConfig={setModalConfig}/>
 

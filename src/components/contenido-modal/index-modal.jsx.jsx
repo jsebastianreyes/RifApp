@@ -1,4 +1,6 @@
-function TemplatesModal({template='default'}) {
+import FormularioPago from "./formulario-pago"
+
+function IndexModal({template='default'}) {
     switch (template) {
         case 'default' :
             return(
@@ -6,11 +8,9 @@ function TemplatesModal({template='default'}) {
             )
         case 'form' :
             return (
-                <form action="">
-                    <input type="text" />
-                </form>
+               <FormularioPago/>
             )
     }
 }
 
-export default TemplatesModal
+export default IndexModal

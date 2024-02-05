@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Overlay from "./overlay"
 import { createPortal } from 'react-dom';
-import TemplatesModal from './contenido-modal/templates-modal';
+import IndexModal from './contenido-modal/index-modal.jsx';
 
 const ModalStyled = styled.div`
     background: white;
@@ -45,7 +45,7 @@ function Modal({modalConfig, setModalConfig}) {
              {createPortal(
                   <Overlay>
                     <ModalStyled>
-                        <TemplatesModal template={template}/>
+                        <IndexModal template={template}/>
                         <button onClick={handleCloseModal}>
                             Close
                         </button>
