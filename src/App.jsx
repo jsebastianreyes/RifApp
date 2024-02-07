@@ -3,6 +3,8 @@ import Header from "./components/header"
 import Footer from "./components/footer"
 import Modal from "./components/modal"
 import { useState } from "react"
+import Icon from "./components/icons"
+import { ButtonRounded } from "./components/button"
 
 function App() {
 
@@ -22,8 +24,9 @@ function App() {
       <Board modalConfig={modalConfig} setModalConfig={setModalConfig}/>
       <Footer/>  
       <Modal modalConfig={modalConfig} setModalConfig={setModalConfig}/>
-
     
+      <ButtonRounded icon={<Icon nombre="icon-mail" size={22} color={'red'} />} />
+
       
       
     </>
