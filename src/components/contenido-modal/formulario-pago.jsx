@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Icon from '../icons'
 
 const FormularioPagoStyled = styled.div`
     
@@ -9,15 +10,26 @@ const FormularioPagoStyled = styled.div`
     form{
         display: flex;
         flex-direction: column;
-        gap: .5rem;
+        gap: .7rem;
         margin-block: 2rem;
     }
 
     form input{
+        /* border: 1px solid #ccc; */
+        border: 0;
         font: var(--baseFont);
+        outline: 0;
+        flex: 1;
+    }
+    
+    .container-input{
         border-radius: .5rem;
         border: 1px solid #ccc;
-        padding:.4rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: .3rem;
+        padding: .4rem 1rem .4rem .5rem;
+
     }
 
     form input[type="submit"]{
@@ -42,6 +54,10 @@ const FormularioPagoStyled = styled.div`
         color: #8f8f8f;
     }
 
+    .container-input label{
+        display: flex;
+    }
+
 
 `
 
@@ -50,9 +66,25 @@ function FormularioPago() {
         <FormularioPagoStyled>
             <h2>Numeros Seleccionados:</h2>
             <form action="">
-                <input type="text" name="" id="" placeholder='Nombre completo' required />
-                <input type="tel" name="" id="" placeholder='Celular' required />
-                <input type="email" name="" id="" placeholder='email' required/>
+                <div className='container-input'>
+                    <label htmlFor="nombre" >
+                        <Icon nombre="icon-user" color={"#ccc"} size={22} />
+                    </label>
+                     <input type="text" name="" id="nombre" placeholder='Nombre completo' required />
+                </div>
+                <div className='container-input'>
+                    <label htmlFor="phone" >
+                        <Icon nombre="icon-phone" color={"#ccc"} size={22} />
+                    </label>
+                     <input type="number" name="" id="phone" placeholder='Número de celular' required />
+                </div>
+                <div className='container-input'>
+                    <label htmlFor="email" >
+                        <Icon nombre="icon-mail" color={"#ccc"} size={22} />
+                    </label>
+                     <input type="email" name="" id="email" placeholder='Correo electrónico' required />
+                </div>
+               
                 <input type="submit" value="Enviar" />
             </form>
           

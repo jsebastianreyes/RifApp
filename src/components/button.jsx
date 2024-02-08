@@ -20,7 +20,7 @@ const ButtonStyled = styled.button`
 //   box-shadow: 1px 1px 8px #000;
 `
 
-function Button({ text, link, className, icon }) {
+function Button({ text, link, className, icon, onClick }) {
   const component = link ? 'a' : 'button'
   let IconComponent = null
   if (icon) {
@@ -29,7 +29,7 @@ function Button({ text, link, className, icon }) {
     }
   }
   return (
-    <ButtonStyled as={component} href={link} className={className}>
+    <ButtonStyled as={component} href={link} className={className} onClick={onClick}>
       {IconComponent}
       {text}
     </ButtonStyled>
