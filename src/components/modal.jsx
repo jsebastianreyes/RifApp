@@ -18,11 +18,21 @@ const ModalStyled = styled.div`
     box-shadow: 1px 1px 5px #000;
     border: 1px solid #4d4d4d;
     font: var(--baseFont);
+    position: relative;
 
     @media screen and (min-width: 768px) {
       &{
         max-inline-size: 25rem;
       }  
+     }
+
+     .close{
+        position: absolute;
+        background: transparent;
+        border: 0;
+        inset-block-start: .4rem;
+        inset-inline-end: .4rem;
+        cursor: pointer;
      }
     
    
@@ -46,8 +56,8 @@ function Modal({modalConfig, setModalConfig}) {
                   <Overlay>
                     <ModalStyled>
                         <IndexModal template={template}/>
-                        <button onClick={handleCloseModal}>
-                            Close
+                        <button title="Cerrar Modal" className="close" onClick={handleCloseModal}>
+                            ❌
                         </button>
                     </ModalStyled>
                   </Overlay>
