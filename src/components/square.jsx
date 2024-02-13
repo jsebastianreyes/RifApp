@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { useState } from 'react'
-import { getNumbers } from '../firebase/config'
+import { useContext } from 'react'
+import { GlobalData } from '../context/variables-globales'
 
 
 const SquareStyled = styled.div`
@@ -42,30 +43,20 @@ const SquareStyled = styled.div`
 
 `
 
-function Square({number, setSelectedNumbers, selectedNumbers, uuid, numbersSold}) {
-  //  console.log(numbersSold)
+function Square({number, uuid, numbersSold}) {
+    //activar numero
     const [active, setActive] = useState(false)
+  
+    const {addNumber, deleteNumber} = useContext(GlobalData)
 
     const handleActive = (e) => {
-     
       setActive(true)
-      setSelectedNumbers(prevState => {
-        const copyArray = [...prevState]
-        const res = copyArray.findIndex(num => num === number)
-        if(res < 0) copyArray.push(number)
-        getNumbers(copyArray, uuid)
-        return copyArray
-      })
+      addNumber(number)
     }
 
     const handleDoubleClick = () => {
       setActive(false)
-      setSelectedNumbers(prevState => {
-        const copyArray = [...prevState]
-        const filter = copyArray.filter(elem => elem !== number)
-        getNumbers(filter, uuid)
-        return filter
-      })
+      deleteNumber(number)
     }
 
     

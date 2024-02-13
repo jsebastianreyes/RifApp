@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 import Square from './square'
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useContext } from 'react'
 import {  onSnapshot, collection } from "firebase/firestore"; 
 import { db } from '../firebase/config';
 import Button from './button';
+import { GlobalData } from '../context/variables-globales';
 
 
 
@@ -23,13 +24,15 @@ function Board({modalConfig, setModalConfig}) {
 
 
     const [numbersSold, setNumbersSold] = useState([])
+    const {selectedNumbers} = useContext(GlobalData)
 
-const handleActivemodal = ()=> {
-    setModalConfig(prev => {
-      return {visibility: true, template: 'form'}
 
-    })
-  }
+    const handleActivemodal = ()=> {
+        setModalConfig(prev => {
+        return {visibility: true, template: 'form'}
+
+        })
+    }
 
     useEffect(()=>{
         onSnapshot(collection(db, 'board'),
@@ -46,8 +49,8 @@ const handleActivemodal = ()=> {
     
 
     const numbers = Array(100).fill()
-    const [selectedNumbers, setSelectedNumbers] = useState([])
-    const uuid = useRef(self.crypto.randomUUID())
+   
+   
     return (
         <>
          <BoardStyled>
@@ -55,16 +58,12 @@ const handleActivemodal = ()=> {
                 return <Square 
                 key={`square-${i}`}
                 number={i}
-                setSelectedNumbers={setSelectedNumbers}
-                selectedNumbers={selectedNumbers}
-                uuid={uuid.current}
                 numbersSold={numbersSold.flat()}
                 />
             })}
 
         </BoardStyled>
             {selectedNumbers.length > 0 ? <Button text="pagar" onClick={handleActivemodal}/> : null}
-
         </>
        
     )

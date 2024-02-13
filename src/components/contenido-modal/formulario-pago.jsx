@@ -1,10 +1,20 @@
 import styled from 'styled-components'
 import Icon from '../icons'
+import { useContext } from 'react'
+import { GlobalData } from '../../context/variables-globales'
 
 const FormularioPagoStyled = styled.div`
     
     &{
         font: var(--baseFont);
+    }
+
+    p{
+        font: var(--baseFontLogo);
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 600;
+        text-decoration: underline;
     }
 
     form{
@@ -62,9 +72,13 @@ const FormularioPagoStyled = styled.div`
 `
 
 function FormularioPago() {
+    const {selectedNumbers} = useContext(GlobalData)
     return (
         <FormularioPagoStyled>
-            <h2>Numeros Seleccionados:</h2>
+          
+            <h2>  {selectedNumbers.length === 1 ? 'Numero Seleccionado:' : 'Numeros Seleccionados:'}</h2>
+            <p> {selectedNumbers.join(', ')}</p>
+           
             <form action="">
                 <div className='container-input'>
                     <label htmlFor="nombre" >
@@ -93,3 +107,4 @@ function FormularioPago() {
 }
 
 export default FormularioPago
+
