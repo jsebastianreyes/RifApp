@@ -1,20 +1,28 @@
-import { useState, createContext, useRef } from "react";
-import { getNumbers } from "../firebase/config";
+import { useState, createContext, useRef, useEffect } from "react";
+import { setNumbers } from "../firebase/config";
+
 
 export const GlobalData = createContext()
 
 export function ProviderGlobalData({children}){
 
+
+
     const [modalConfig, setModalConfig] = useState({visibility: false, template: 'default'})
     const [selectedNumbers, setSelectedNumbers] = useState([])
     const uuid = useRef(self.crypto.randomUUID())
+
+
 
     const addNumber = (numero) => {
         setSelectedNumbers(prevState => {
             const copyArray = [...prevState]
             const res = copyArray.findIndex(num => num === numero)
             if(res < 0) copyArray.push(numero)
-            getNumbers(copyArray, uuid.current)
+            setNumbers({
+              uuid: uuid.current, 
+              numbers: copyArray
+            })
             return copyArray
           })
     }
@@ -23,13 +31,23 @@ export function ProviderGlobalData({children}){
         setSelectedNumbers(prevState => {
         const copyArray = [...prevState]
         const filter = copyArray.filter(elem => elem !== number)
-        getNumbers(filter, uuid.current)
+        setNumbers({
+            uuid: uuid.current, 
+            numbers: filter
+          })
         return filter
       })
     }
 
+    const clean = ()=>{
+        setSelectedNumbers([])
+        uuid.current = self.crypto.randomUUID()
+        
+
+    }
+
     return(
-        <GlobalData.Provider value={{modalConfig, setModalConfig, selectedNumbers, addNumber, uuid, deleteNumber}}>
+        <GlobalData.Provider value={{modalConfig, setModalConfig, selectedNumbers, addNumber, uuid, deleteNumber, clean}}>
             {children}
         </GlobalData.Provider>
     )

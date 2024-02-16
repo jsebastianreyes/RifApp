@@ -2,18 +2,19 @@ import Board from "./components/board"
 import Header from "./components/header"
 import Footer from "./components/footer"
 import Modal from "./components/modal"
-import { useState } from "react"
+
 
 function App() {
 
-  const [modalConfig, setModalConfig] = useState({visibility: false, template: 'default'})
+
+  
   return (
     <>  
-
+      {/* {uuid} */}
       <Header/>
-      <Board modalConfig={modalConfig} setModalConfig={setModalConfig}/>
+      <Board />
       <Footer/>  
-      <Modal modalConfig={modalConfig} setModalConfig={setModalConfig}/>
+      <Modal />
     
 
       

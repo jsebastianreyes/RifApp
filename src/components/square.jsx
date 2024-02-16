@@ -29,8 +29,6 @@ const SquareStyled = styled.div`
   &.active{
     background-color: #FBAB7E;
     background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
-
-
   }
 
   &.blocked{
@@ -41,14 +39,24 @@ const SquareStyled = styled.div`
 
   }
 
+
+  &.test{
+    background-color: #26c64e;
+    background-image: linear-gradient(147deg, #a8144f 0%, #FF2525 74%);
+    pointer-events: none;
+    opacity: .9;
+
+  }
+
 `
 
 function Square({number, uuid, numbersSold}) {
+  // console.log(numbersSold[number])
     //activar numero
     const [active, setActive] = useState(false)
+    const {addNumber, deleteNumber, cleanBoard,  selectedNumbers} = useContext(GlobalData)
+    
   
-    const {addNumber, deleteNumber} = useContext(GlobalData)
-
     const handleActive = (e) => {
       setActive(true)
       addNumber(number)
@@ -61,14 +69,25 @@ function Square({number, uuid, numbersSold}) {
 
     
    const isAvailable = ()=> {  
-    return numbersSold.some(item => item === number)
+    //hacer validaciones aqui
+    return numbersSold.some(item => {
+       return item.numeros.some(numero => numero === number)
+    })
  }
 
+ console.log(selectedNumbers)
+  
+ const test = ()=> {  
+   return selectedNumbers.some(item => item === number)
+}
+
+  console.log(test())
+
+     
+  //  console.log(isAvailable())
    const clasName = ()=> {
-     if(isAvailable() & !active) return 'blocked'
-     else if(active) return 'active'
-     else return ''
-    
+     if(isAvailable() && !test())  return 'blocked'  
+     if(test()) return 'active'
    }
    return (
         <SquareStyled onClick={handleActive} className={clasName()}

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import Square from './square'
-import { useState, useRef, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import {  onSnapshot, collection } from "firebase/firestore"; 
 import { db } from '../firebase/config';
 import Button from './button';
@@ -20,11 +20,13 @@ const BoardStyled = styled.main`
 
 `
 
-function Board({modalConfig, setModalConfig}) {
+function Board() {
 
 
     const [numbersSold, setNumbersSold] = useState([])
-    const {selectedNumbers} = useContext(GlobalData)
+    const {selectedNumbers, setModalConfig} = useContext(GlobalData)
+
+
 
 
     const handleActivemodal = ()=> {
@@ -39,17 +41,19 @@ function Board({modalConfig, setModalConfig}) {
         (querySnapshot)=> {
           let listUsers = []
           querySnapshot.forEach((doc) => {
-            listUsers.push(doc.data().numeros) 
-          })  
-           
-           return setNumbersSold(listUsers)
+            listUsers.push({
+             numeros: doc.data().numeros,
+             status: doc.data().status   
+            })
         })  
-    },[])
+        
+        return setNumbersSold(listUsers)
+    })  
+},[])
 
-    
+
 
     const numbers = Array(100).fill()
-   
    
     return (
         <>
@@ -58,7 +62,7 @@ function Board({modalConfig, setModalConfig}) {
                 return <Square 
                 key={`square-${i}`}
                 number={i}
-                numbersSold={numbersSold.flat()}
+                numbersSold={numbersSold}
                 />
             })}
 
