@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 import Square from './square'
-import { useState, useRef, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import {  onSnapshot, collection } from "firebase/firestore"; 
 import { db } from '../firebase/config';
 import Button from './button';
+import { GlobalData } from '../context/variables-globales';
 
 
 
@@ -19,35 +20,41 @@ const BoardStyled = styled.main`
 
 `
 
-function Board({modalConfig, setModalConfig}) {
+function Board() {
 
 
     const [numbersSold, setNumbersSold] = useState([])
+    const {selectedNumbers, setModalConfig} = useContext(GlobalData)
 
-const handleActivemodal = ()=> {
-    setModalConfig(prev => {
-      return {visibility: true, template: 'form'}
 
-    })
-  }
+
+
+    const handleActivemodal = ()=> {
+        setModalConfig(prev => {
+        return {visibility: true, template: 'form'}
+
+        })
+    }
 
     useEffect(()=>{
         onSnapshot(collection(db, 'board'),
         (querySnapshot)=> {
           let listUsers = []
           querySnapshot.forEach((doc) => {
-            listUsers.push(doc.data().numeros) 
-          })  
-           
-           return setNumbersSold(listUsers)
+            listUsers.push({
+             numeros: doc.data().numeros,
+             status: doc.data().status   
+            })
         })  
-    },[])
+        
+        return setNumbersSold(listUsers)
+    })  
+},[])
 
-    
+
 
     const numbers = Array(100).fill()
-    const [selectedNumbers, setSelectedNumbers] = useState([])
-    const uuid = useRef(self.crypto.randomUUID())
+   
     return (
         <>
          <BoardStyled>
@@ -55,16 +62,12 @@ const handleActivemodal = ()=> {
                 return <Square 
                 key={`square-${i}`}
                 number={i}
-                setSelectedNumbers={setSelectedNumbers}
-                selectedNumbers={selectedNumbers}
-                uuid={uuid.current}
-                numbersSold={numbersSold.flat()}
+                numbersSold={numbersSold}
                 />
             })}
 
         </BoardStyled>
             {selectedNumbers.length > 0 ? <Button text="pagar" onClick={handleActivemodal}/> : null}
-
         </>
        
     )

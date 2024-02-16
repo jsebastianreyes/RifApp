@@ -1,7 +1,9 @@
 import styled from 'styled-components'
 import Overlay from "./overlay"
 import { createPortal } from 'react-dom';
+import { useContext, useRef } from 'react';
 import IndexModal from './contenido-modal/index-modal.jsx';
+import { GlobalData } from '../context/variables-globales.jsx';
 
 const ModalStyled = styled.div`
     background: white;
@@ -38,9 +40,11 @@ const ModalStyled = styled.div`
    
 `
 
-function Modal({modalConfig, setModalConfig}) {
+function Modal() {
+    const {modalConfig, setModalConfig} = useContext(GlobalData)
+   
     const {visibility, template} = modalConfig
-
+ 
     const handleCloseModal = ()=> {
         setModalConfig(prev => {
              return {

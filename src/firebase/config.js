@@ -23,10 +23,14 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 export const db = getFirestore(app);
 
-export const getNumbers = async (numbers, uuid) => {
+export const setNumbers = async ( {uuid, numbers, status='pending', data={}}) => {
+   const {nombre="*****", numero="******", email="*****" } = data
     await setDoc(doc(db, "board", uuid), {
-        name: '',
-        numeros: numbers
+        numeros: numbers,
+        status,
+        nombre,
+        numero,
+        email,
       });
 }
 
