@@ -51,8 +51,6 @@ const SquareStyled = styled.div`
 `
 
 function Square({number, uuid, numbersSold}) {
-  // console.log(numbersSold[number])
-    //activar numero
     const [active, setActive] = useState(false)
     const {addNumber, deleteNumber, cleanBoard,  selectedNumbers} = useContext(GlobalData)
     
@@ -69,19 +67,18 @@ function Square({number, uuid, numbersSold}) {
 
     
    const isAvailable = ()=> {  
-    //hacer validaciones aqui
     return numbersSold.some(item => {
        return item.numeros.some(numero => numero === number)
     })
  }
 
- console.log(selectedNumbers)
+
   
  const test = ()=> {  
    return selectedNumbers.some(item => item === number)
 }
 
-  console.log(test())
+
 
      
   //  console.log(isAvailable())
