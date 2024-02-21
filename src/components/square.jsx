@@ -56,7 +56,6 @@ function Square({number, uuid, numbersSold}) {
     const [numberStatus, setNumberStatus] = useState('available')
     const {addNumber, deleteNumber, cleanBoard,  selectedNumbers, reset} = useContext(GlobalData)
     
-   console.log(numberStatus, number)
    
     const handleActive = (e) => {
       setActive(true)
@@ -78,21 +77,12 @@ function Square({number, uuid, numbersSold}) {
  }
 
 
-  
- const test = ()=> {  
-   return selectedNumbers.some(item => item === number)
-}
-
-const myfunction = numberStatus === 'pending' && reset ? setNumberStatus('sold') : ''
+ numberStatus === 'pending' && reset ? setNumberStatus('sold') : ''
 
 
- 
-     
-  //  console.log(isAvailable())
    const clasName = ()=> {
      if(isAvailable() && numberStatus !== 'pending' )  return 'blocked'  
-    //  if(test()) return 'active'
-     if(numberStatus === 'pending') return 'active'
+     else if(numberStatus === 'pending') return 'active'
    }
    return (
         <SquareStyled onClick={handleActive} className={clasName()}
