@@ -11,10 +11,14 @@ export function ProviderGlobalData({children}){
     const [modalConfig, setModalConfig] = useState({visibility: false, template: 'default'})
     const [selectedNumbers, setSelectedNumbers] = useState([])
     const uuid = useRef(self.crypto.randomUUID())
+    const [reset, setReset] = useState(false)
+
+   
 
 
 
     const addNumber = (numero) => {
+
         setSelectedNumbers(prevState => {
             const copyArray = [...prevState]
             const res = copyArray.findIndex(num => num === numero)
@@ -25,6 +29,7 @@ export function ProviderGlobalData({children}){
             })
             return copyArray
           })
+          setReset(false)
     }
 
     const deleteNumber = (number) => {
@@ -37,17 +42,20 @@ export function ProviderGlobalData({children}){
           })
         return filter
       })
+      setReset(false)
+
     }
 
     const clean = ()=>{
         setSelectedNumbers([])
+        setReset(true)
         uuid.current = self.crypto.randomUUID()
         
 
     }
 
     return(
-        <GlobalData.Provider value={{modalConfig, setModalConfig, selectedNumbers, addNumber, uuid, deleteNumber, clean}}>
+        <GlobalData.Provider value={{modalConfig, setModalConfig, selectedNumbers, addNumber, uuid, deleteNumber, clean, reset}}>
             {children}
         </GlobalData.Provider>
     )

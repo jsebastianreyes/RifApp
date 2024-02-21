@@ -51,43 +51,38 @@ const SquareStyled = styled.div`
 `
 
 function Square({number, uuid, numbersSold}) {
-  // console.log(numbersSold[number])
-    //activar numero
     const [active, setActive] = useState(false)
-    const {addNumber, deleteNumber, cleanBoard,  selectedNumbers} = useContext(GlobalData)
+
+    const [numberStatus, setNumberStatus] = useState('available')
+    const {addNumber, deleteNumber, cleanBoard,  selectedNumbers, reset} = useContext(GlobalData)
     
-  
+   
     const handleActive = (e) => {
       setActive(true)
+      setNumberStatus('pending')
       addNumber(number)
     }
 
     const handleDoubleClick = () => {
+      setNumberStatus('pending')
       setActive(false)
       deleteNumber(number)
     }
 
     
    const isAvailable = ()=> {  
-    //hacer validaciones aqui
     return numbersSold.some(item => {
        return item.numeros.some(numero => numero === number)
     })
  }
 
- console.log(selectedNumbers)
-  
- const test = ()=> {  
-   return selectedNumbers.some(item => item === number)
-}
 
-  console.log(test())
+ numberStatus === 'pending' && reset ? setNumberStatus('sold') : ''
 
-     
-  //  console.log(isAvailable())
+
    const clasName = ()=> {
-     if(isAvailable() && !test())  return 'blocked'  
-     if(test()) return 'active'
+     if(isAvailable() && numberStatus !== 'pending' )  return 'blocked'  
+     else if(numberStatus === 'pending') return 'active'
    }
    return (
         <SquareStyled onClick={handleActive} className={clasName()}
