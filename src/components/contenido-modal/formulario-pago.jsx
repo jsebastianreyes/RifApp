@@ -3,6 +3,8 @@ import Icon from '../icons'
 import { useContext, useRef } from 'react'
 import { GlobalData } from '../../context/variables-globales'
 import { setNumbers } from '../../firebase/config'
+import { deleteNumbers } from '../../firebase/config'
+
 
 const FormularioPagoStyled = styled.div`
     
@@ -43,7 +45,7 @@ const FormularioPagoStyled = styled.div`
 
     }
 
-    form input[type="submit"]{
+    form input[type="submit"], button{
         background-color: #000;
         margin-block-start: .4rem;
         color: white;
@@ -98,6 +100,18 @@ function FormularioPago() {
         //notificar reserva de numero
         clean()
     }
+
+
+    const handleClean = () => {
+        deleteNumbers(uuid.current)
+        setModalConfig(prev => {
+            return {
+               ...prev, 
+               visibility: false
+           } 
+       }) 
+        clean()
+    }
     return (
         <FormularioPagoStyled>
           
@@ -125,6 +139,9 @@ function FormularioPago() {
                 </div>
                
                 <input type="submit" value="Enviar" />
+                
+                <input  onClick={handleClean} type="reset" value="Borrar" />
+
             </form>
           
         </FormularioPagoStyled>
