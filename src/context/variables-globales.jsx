@@ -46,12 +46,10 @@ export function ProviderGlobalData({children}){
 
     }
 
-    const clean = ()=>{
+    const clean = ()=> {
         setSelectedNumbers([])
         setReset(true)
         uuid.current = self.crypto.randomUUID()
-        
-
     }
 
     return(
