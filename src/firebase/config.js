@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { doc, setDoc, getFirestore, onSnapshot, collection } from "firebase/firestore"; 
+import { doc, setDoc, getFirestore, onSnapshot, collection, deleteDoc } from "firebase/firestore"; 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -46,4 +46,8 @@ export const getUsers = () => {
   })  
 
   
+}
+
+export const deleteNumbers = async (uuid) => {
+  await deleteDoc(doc(db, "board", uuid));
 }
