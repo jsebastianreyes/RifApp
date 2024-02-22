@@ -47,12 +47,28 @@ const FormularioPagoStyled = styled.div`
 
     form input[type="submit"], button{
         background-color: #000;
-        margin-block-start: .4rem;
+        margin-block-start: 1.2rem;
         color: white;
         text-transform: uppercase;
         font-weight: 800;
         letter-spacing: .5px;
         border: 0;
+        padding-block: .5rem;
+        border-radius: 2rem;
+        outline: 0;
+        cursor: pointer;
+
+    }
+
+
+    form input[type="reset"]{
+        background-color: transparent;
+        margin-block-start: .4rem;
+        border: 1px solid #000;
+        color: #000;
+        text-transform: uppercase;
+        font-weight: 800;
+        letter-spacing: .5px;
         padding-block: .5rem;
         border-radius: 2rem;
         outline: 0;
@@ -138,9 +154,9 @@ function FormularioPago() {
                      <input type="email" name="email" id="email" placeholder='Correo electrónico' required />
                 </div>
                
-                <input type="submit" value="Enviar" />
+                <input type="submit" value="Reservar" />
                 
-                <input  onClick={handleClean} type="reset" value="Borrar" />
+                <input className='delete' onClick={handleClean} type="reset" value="Cancelar" />
 
             </form>
           
