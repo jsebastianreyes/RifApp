@@ -64,7 +64,7 @@ function Square({number, uuid, numbersSold}) {
     }
 
     const handleDoubleClick = () => {
-      setNumberStatus('pending')
+      setNumberStatus('available')
       setActive(false)
       deleteNumber(number)
     }

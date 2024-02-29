@@ -2,6 +2,8 @@ import Board from "./components/board"
 import Header from "./components/header"
 import Footer from "./components/footer"
 import Modal from "./components/modal"
+import Wrapper from "./components/wrapper"
+import Indications from "./components/indications"
 
 
 function App() {
@@ -9,17 +11,13 @@ function App() {
 
   
   return (
-    <>  
-      {/* {uuid} */}
+    <Wrapper>    
       <Header/>
+      <Indications/>
       <Board />
       <Footer/>  
       <Modal />
-    
-
-      
-      
-    </>
+    </Wrapper>
   )
 }
 
