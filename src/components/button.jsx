@@ -58,7 +58,7 @@ export const ButtonFloat = styled(Button)`
    min-inline-size: 3.5rem;
    position: fixed;
    inset-block-end: 2rem;
-   z-index: 999;
+   z-index: 9;
    box-shadow: 1px 2px 8px #000;
    inset-inline-start: calc(50% - 3.5rem);
 
