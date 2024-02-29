@@ -24,7 +24,7 @@ const ModalStyled = styled.div`
 
     @media screen and (min-width: 768px) {
       &{
-        max-inline-size: 25rem;
+        max-inline-size: 35rem;
       }  
      }
 

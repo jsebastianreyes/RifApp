@@ -54,4 +54,16 @@ export const ButtonRounded = styled(Button)`
   
 `
 
+export const ButtonFloat = styled(Button)`
+   min-inline-size: 3.5rem;
+   position: fixed;
+   inset-block-end: 2rem;
+   z-index: 999;
+   box-shadow: 1px 2px 8px #000;
+   inset-inline-start: calc(50% - 3.5rem);
+
+   
+  
+`
+
 export default Button

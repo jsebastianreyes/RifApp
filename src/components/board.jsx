@@ -3,7 +3,7 @@ import Square from './square'
 import { useState, useEffect, useContext } from 'react'
 import {  onSnapshot, collection } from "firebase/firestore"; 
 import { db } from '../firebase/config';
-import Button from './button';
+import { ButtonFloat } from './button';
 import { GlobalData } from '../context/variables-globales';
 
 
@@ -15,8 +15,8 @@ const BoardStyled = styled.main`
     grid-template-columns: repeat(auto-fit, minmax(3rem, 1fr));
     gap: 1rem;
 
-    margin-block: 3rem;
-    margin-inline: 2rem;
+    margin-block: 1rem;
+    
 
 `
 
@@ -67,7 +67,7 @@ function Board() {
             })}
 
         </BoardStyled>
-            {selectedNumbers.length > 0 ? <Button text="pagar" onClick={handleActivemodal}/> : null}
+            {selectedNumbers.length > 0 ? <ButtonFloat text="pagar" onClick={handleActivemodal}/> : null}
         </>
        
     )
