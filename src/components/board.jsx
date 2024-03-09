@@ -1,15 +1,10 @@
 import styled from 'styled-components'
 import Square from './square'
-import { useState, useEffect, useContext } from 'react'
-import {  onSnapshot, collection } from "firebase/firestore"; 
-import { db } from '../firebase/config';
+import { useContext } from 'react'
 import { ButtonFloat } from './button';
 import { GlobalData } from '../context/variables-globales';
-
-
-
-
-
+import { useGetNumbersSold } from '../hooks/useGetNumbersSold';
+import Preload from './preload';
 const BoardStyled = styled.main`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(3rem, 1fr));
@@ -22,11 +17,9 @@ const BoardStyled = styled.main`
 
 function Board() {
 
-
-    const [numbersSold, setNumbersSold] = useState([])
     const {selectedNumbers, setModalConfig} = useContext(GlobalData)
-
-
+    const {loading} = useGetNumbersSold()
+    const numbers = Array(100).fill()
 
 
     const handleActivemodal = ()=> {
@@ -35,38 +28,23 @@ function Board() {
 
         })
     }
-
-    useEffect(()=>{
-        onSnapshot(collection(db, 'board'),
-        (querySnapshot)=> {
-          let listUsers = []
-          querySnapshot.forEach((doc) => {
-            listUsers.push({
-             numeros: doc.data().numeros,
-             status: doc.data().status   
-            })
-        })  
-        
-        return setNumbersSold(listUsers)
-    })  
-},[])
-
-
-
-    const numbers = Array(100).fill()
+    
    
     return (
         <>
-         <BoardStyled>
+         {loading ?
+            <Preload/> :
+            <BoardStyled >
             {numbers.map((el, i) => {
                 return <Square 
                 key={`square-${i}`}
                 number={i}
-                numbersSold={numbersSold}
                 />
+
             })}
 
-        </BoardStyled>
+        </BoardStyled> }
+    
             {selectedNumbers.length > 0 ? <ButtonFloat text="pagar" onClick={handleActivemodal}/> : null}
         </>
        
