@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { useState } from 'react'
 import { useContext } from 'react'
 import { GlobalData } from '../context/variables-globales'
+import { useGetNumbersSold } from '../hooks/useGetNumbersSold'
 
 
 const SquareStyled = styled.div`
@@ -50,11 +51,11 @@ const SquareStyled = styled.div`
 
 `
 
-function Square({number, uuid, numbersSold}) {
+function Square({number, uuid}) {
     const [active, setActive] = useState(false)
-
     const [numberStatus, setNumberStatus] = useState('available')
     const {addNumber, deleteNumber, cleanBoard,  selectedNumbers, reset} = useContext(GlobalData)
+    const { numbersSold } = useGetNumbersSold()
     
    
     const handleActive = (e) => {
