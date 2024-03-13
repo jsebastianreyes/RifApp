@@ -18,9 +18,9 @@ export function useGetNumbersSold (){
                  numeros: doc.data().numeros,
                  status: doc.data().status   
                 })
-                setLoading(false)
-            })  
-            
+              })  
+              
+              setLoading(false)
             return setNumbersSold(listUsers)
         })  
             
