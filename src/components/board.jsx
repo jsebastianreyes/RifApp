@@ -7,7 +7,7 @@ import { useGetNumbersSold } from '../hooks/useGetNumbersSold';
 import Preload from './preload';
 const BoardStyled = styled.main`
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(3rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(3rem,  1fr));
     gap: 1rem;
 
     margin-block: 1rem;
