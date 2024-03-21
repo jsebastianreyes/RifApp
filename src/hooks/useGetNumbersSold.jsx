@@ -21,10 +21,10 @@ export function useGetNumbersSold (){
                 // })
 
                 listUsers.push(doc.data().numeros)
-                setLoading(false)
-            })  
-            
-            return setNumbersSold(listUsers.flat())
+              })  
+              
+              setLoading(false)
+              return setNumbersSold(listUsers.flat())
         })  
             
         } catch (error) {
