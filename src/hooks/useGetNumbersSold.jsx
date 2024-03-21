@@ -21,9 +21,9 @@ export function useGetNumbersSold (){
                 // })
 
                 listUsers.push(doc.data().numeros)
-                setLoading(false)
+                
             })  
-            
+             setLoading(false)
             return setNumbersSold(listUsers.flat())
         })  
             
