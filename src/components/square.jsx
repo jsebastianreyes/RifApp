@@ -70,12 +70,16 @@ function Square({number, uuid}) {
       deleteNumber(number)
     }
 
-    
-   const isAvailable = ()=> {  
-    return numbersSold.some(item => {
-       return item.numeros.some(numero => numero === number)
-    })
- }
+    console.log(numbersSold)
+//    const isAvailable = ()=> {  
+//     return numbersSold.some(item => {
+//        return item.numeros.some(numero => numero === number)
+//     })
+//  }
+
+ const isAvailable = ()=> {  
+  return numbersSold.some(item => item === number)
+}
 
 
  numberStatus === 'pending' && reset ? setNumberStatus('sold') : ''
