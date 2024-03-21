@@ -5,6 +5,7 @@ import { db } from '../firebase/config';
 export function useGetNumbersSold (){
 
     const [numbersSold, setNumbersSold] = useState([])
+    const [fullData, setFullData] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
 
@@ -14,14 +15,16 @@ export function useGetNumbersSold (){
             (querySnapshot)=> {
               let listUsers = []
               querySnapshot.forEach((doc) => {
-                listUsers.push({
-                 numeros: doc.data().numeros,
-                 status: doc.data().status   
-                })
+                // listUsers.push({
+                //  numeros: doc.data().numeros,
+                //  status: doc.data().status   
+                // })
+
+                listUsers.push(doc.data().numeros)
                 setLoading(false)
             })  
             
-            return setNumbersSold(listUsers)
+            return setNumbersSold(listUsers.flat())
         })  
             
         } catch (error) {

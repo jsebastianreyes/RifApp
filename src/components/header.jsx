@@ -9,6 +9,7 @@ const HeaderStyled = styled.header`
    align-items: center;
    padding-block: 1.2rem;
    flex-wrap: wrap;
+   
 
    nav{
     display: flex;
