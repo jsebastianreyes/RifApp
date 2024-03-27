@@ -1,11 +1,13 @@
 import styled from 'styled-components'
 import Overlay from "./overlay"
 import { createPortal } from 'react-dom';
-import { useContext, useRef } from 'react';
+import { useContext } from 'react';
 import IndexModal from './contenido-modal/index-modal.jsx';
 import { GlobalData } from '../context/variables-globales.jsx';
 
-const ModalStyled = styled.div`
+
+
+const ModalStyled  = styled.div`
     background: white;
     color: #4d4d4d;
     padding: 1.5rem;
@@ -14,7 +16,7 @@ const ModalStyled = styled.div`
     inset-block-start: 50%;
     transform: translateY(-50%) translateX(-50%);
     inset-inline-start: 50%;
-    max-inline-size: 16rem;
+    
     inline-size: 100%;
     min-block-size: 16rem;
     box-shadow: 1px 1px 5px #000;
@@ -22,10 +24,22 @@ const ModalStyled = styled.div`
     font: var(--baseFont);
     position: relative;
 
+
     @media screen and (min-width: 768px) {
       &{
-        max-inline-size: 35rem;
+        max-inline-size: ${ props => {
+         switch( props.template ){
+             case 'form':
+                 return '23rem';
+             default:
+                 return '32rem';
+         }
+     }}; 
       }  
+     }
+
+     &.test{
+        max-inline-size: 24rem;
      }
 
      .close{
@@ -41,8 +55,9 @@ const ModalStyled = styled.div`
 `
 
 function Modal() {
+
+    
     const {modalConfig, setModalConfig} = useContext(GlobalData)
-   
     const {visibility, template} = modalConfig
  
     const handleCloseModal = ()=> {
@@ -58,8 +73,8 @@ function Modal() {
            <>
              {createPortal(
                   <Overlay>
-                    <ModalStyled>
-                        <IndexModal template={template}/>
+                    <ModalStyled  template={template}>
+                        <IndexModal/>
                         <button title="Cerrar Modal" className="close" onClick={handleCloseModal}>
                             ❌
                         </button>

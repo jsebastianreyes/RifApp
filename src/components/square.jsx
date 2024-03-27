@@ -70,7 +70,7 @@ function Square({number, uuid}) {
       deleteNumber(number)
     }
 
-    console.log(numbersSold)
+    // console.log(numbersSold)
 //    const isAvailable = ()=> {  
 //     return numbersSold.some(item => {
 //        return item.numeros.some(numero => numero === number)
