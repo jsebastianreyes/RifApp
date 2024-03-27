@@ -6,8 +6,8 @@ import Wrapper from "./components/wrapper"
 import Indications from "./components/indications"
 
 
-function App() {
 
+function App() {
 
   
   return (
@@ -16,7 +16,7 @@ function App() {
       <Indications/>
       <Board />
       <Footer/>  
-      <Modal />
+      <Modal/>
     </Wrapper>
   )
 }
