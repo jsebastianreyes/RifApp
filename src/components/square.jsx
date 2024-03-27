@@ -56,6 +56,8 @@ function Square({number, uuid}) {
     const [numberStatus, setNumberStatus] = useState('available')
     const {addNumber, deleteNumber, cleanBoard,  selectedNumbers, reset} = useContext(GlobalData)
     const { numbersSold } = useGetNumbersSold()
+
+   
     
    
     const handleActive = (e) => {
