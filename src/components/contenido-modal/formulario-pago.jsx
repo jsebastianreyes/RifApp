@@ -2,8 +2,10 @@ import styled from 'styled-components'
 import Icon from '../icons'
 import { useContext, useRef } from 'react'
 import { GlobalData } from '../../context/variables-globales'
-import { setNumbers } from '../../firebase/config'
 import { deleteNumbers } from '../../firebase/config'
+import { useGetNumbersSold } from '../../hooks/useGetNumbersSold'
+import { compareArrays } from '../../utils/utils'
+import { setNumbers } from '../../firebase/config'
 
 
 const FormularioPagoStyled = styled.div`
@@ -93,28 +95,34 @@ const FormularioPagoStyled = styled.div`
 
 function FormularioPago() {
     const {selectedNumbers, setModalConfig, clean, uuid} = useContext(GlobalData)
+    const {numbersSold} = useGetNumbersSold()
+
     const form = useRef(null)
 
     const handleSubmit = (e)=> {
-        //cerrar modal ✅
-        e.preventDefault()
-        const data =  Object.fromEntries(new FormData(e.target)) 
-        setModalConfig(prev => {
-            return {
-               ...prev, 
-               visibility: false
-           } 
-       }) 
-        form.current.reset()
-        //limpiar formulario ✅
-        setNumbers({
-            uuid: uuid.current,
-            numbers: selectedNumbers,
-            status: 'procesando',
-            data,      
-        })
-        //notificar reserva de numero
-        clean()
+       if(compareArrays(numbersSold, selectedNumbers)){
+             e.preventDefault()
+             deleteNumbers(uuid.current)
+             clean()
+             setModalConfig(prev => { return {...prev, visibility: true, template: 'error'}}) 
+
+       }
+       else{
+            // cerrar modal ✅
+            const data =  Object.fromEntries(new FormData(e.target)) 
+            setModalConfig(prev => { return {...prev, visibility: false}}) 
+            form.current.reset()
+            //limpiar formulario ✅
+            setNumbers({
+                uuid: uuid.current,
+                numbers: selectedNumbers,
+                status: 'procesando',
+                data,      
+            })
+            //notificar reserva de numero
+            clean()
+       }
+    
     }
 
 

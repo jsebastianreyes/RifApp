@@ -46,6 +46,14 @@ const HeaderStyled = styled.header`
   nav span:hover{
     text-decoration: underline;
   }
+
+  @media (width <= 580px) {
+    &{
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.2rem;
+    }
+  }
 `
 
 function Header() {
