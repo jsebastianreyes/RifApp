@@ -1,14 +1,14 @@
 export function compareArrays(numbersSold, selectedNumbers){
-    let value 
-    selectedNumbers.forEach(num => {
-        const verif = numbersSold.filter(number => number === num )
-        if(verif.length > 1) value = true
-        else value = false
-     }); 
+    let value = true
+    for (let i = 0; i <= numbersSold.length -1; i++) {
+          const validate = numbersSold.filter(number => number == selectedNumbers[i])
+          if(validate.length > 1) {
+            value = false
+            break  
+          }
+      }
 
-     return value ? true : false
-
-    
+      return !value ? false : true   
 }
 
 

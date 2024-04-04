@@ -100,7 +100,7 @@ function FormularioPago() {
     const form = useRef(null)
 
     const handleSubmit = (e)=> {
-       if(compareArrays(numbersSold, selectedNumbers)){
+       if(!compareArrays(numbersSold, selectedNumbers)){
              e.preventDefault()
              deleteNumbers(uuid.current)
              clean()
