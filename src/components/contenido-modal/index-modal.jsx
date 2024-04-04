@@ -1,6 +1,7 @@
 import FormularioPago from "./formulario-pago"
 import InfoPremio from "./info-premio"
 import Instrucciones from "./instrucciones"
+import Error from "./error"
 import { useContext } from "react"
 import { GlobalData } from "../../context/variables-globales"
 
@@ -18,6 +19,10 @@ function IndexModal() {
             case 'instrucciones' :
                 return(
                     <Instrucciones/>
+                )
+                case 'error' :
+                return(
+                    <Error/>
                 )
         case 'form' :
             return (

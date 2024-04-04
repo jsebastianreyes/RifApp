@@ -20,6 +20,10 @@ function Board() {
     const {selectedNumbers, setModalConfig} = useContext(GlobalData)
     const {loading} = useGetNumbersSold()
     const numbers = Array(100).fill()
+    const { numbersSold } = useGetNumbersSold()
+     
+
+    console.log(numbersSold)
 
 
     const handleActivemodal = ()=> {
