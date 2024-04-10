@@ -5,7 +5,7 @@ import { GlobalData } from '../../context/variables-globales'
 import { deleteNumbers } from '../../firebase/config'
 import { useGetNumbersSold } from '../../hooks/useGetNumbersSold'
 import { compareArrays } from '../../utils/utils'
-import { setNumbers } from '../../firebase/config'
+import { setNumbers, setNumbersFull } from '../../firebase/config'
 
 
 const FormularioPagoStyled = styled.div`
@@ -113,7 +113,7 @@ function FormularioPago() {
             setModalConfig(prev => { return {...prev, visibility: false}}) 
             form.current.reset()
             //limpiar formulario ✅
-            setNumbers({
+            setNumbersFull({
                 uuid: uuid.current,
                 numbers: selectedNumbers,
                 status: 'procesando',
