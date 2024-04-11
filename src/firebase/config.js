@@ -23,16 +23,16 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 export const db = getFirestore(app);
 
-// export const setNumbers = async ( {uuid, numbers, status='pending', data={}}) => {
-//    const {nombre="*****", numero="******", email="*****" } = data
-//     await setDoc(doc(db, "board", uuid), {
-//         numeros: numbers,
-//         status,
-//         nombre,
-//         numero,
-//         email,
-//       });
-// }
+export const setNumbersFull = async ( {uuid, numbers, status='pending', data={}}) => {
+   const {nombre="*****", numero="******", email="*****" } = data
+    await setDoc(doc(db, "board", uuid), {
+        numeros: numbers,
+        status,
+        nombre,
+        numero,
+        email,
+      });
+}
 
 export const setNumbers = async ( {uuid, numbers}) => {
   console.log(uuid)
@@ -42,7 +42,6 @@ export const setNumbers = async ( {uuid, numbers}) => {
 }
 
 export const getUsers = () => {
-  
  onSnapshot(collection(db, 'board'),
   (querySnapshot)=> {
     let listUsers = []
